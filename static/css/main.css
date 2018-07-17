@@ -1,0 +1,11 @@
+* {margin:0;padding:0;}
+#menu {position:fixed;top:0;left:0;width:220px;height:100%;background-color:#682f84;z-index:9999;}
+a:hover ,a:focus{text-decoration:none}
+.nav ul li a {color:#fefdf9;display:block;padding:1em 5%;width:220px; border-top:1px solid #fefdf9;border-bottom:1px solid #fefdf9;transition:all 0.2s ease-out;cursor:pointer;}
+#menu {position:fixed;top:0;left:0;width:220px;height:100%;background-color:#683a7e;z-index:9999;transition:all 0.3s ease-in;}
+.nav ul li a:hover {background-color: #bf1f39;color: #ffffff;}
+.show-nav {transform:translateX(0);}
+.hide-nav {transform:translateX(-220px);} /*侧滑关键*/
+.nav-taggle {height:35px;line-height:35px;width:35px;background-color:#bf1f39;color:#ffffff;display:inline-block;text-align:center;cursor:pointer}
+.nav.avbar-inverse{position:relative;}
+.nav-btn {position:absolute;right:20px;top:20px;}
