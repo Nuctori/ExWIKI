@@ -1,0 +1,13 @@
+Flask==0.12.2
+Flask-SQLAlchemy==2.3.2
+html5lib==1.0.1
+isort==4.3.4
+itsdangerous==0.24
+Jinja2==2.10
+Markdown==2.6.11
+MarkupSafe==1.0
+mccabe==0.6.1
+pylint==1.9.2
+SQLAlchemy==1.2.5
+virtualenv==15.1.0
+Werkzeug==0.14.1

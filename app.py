@@ -66,6 +66,9 @@ def editor_forum(forum):
 
 
 '''
+
+gunicorn
+
 @app.route('/bbs')
 def bbs():
     ms = Page.get_all()
