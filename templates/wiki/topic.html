@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>bbs club</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+    <link rel="stylesheet" href="/static/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/lib/jquery-3.0.0.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/static/lib/markdown.js"></script>
+    <script src="/static/lib/to-markdown.js"></script>
+    <script src="/static/lib/bootstrap-markdown.js"></script>
+    <script src="/static/lib/bootstrap-markdown.fr.js"></script>
+</head>
+
+<script> 
+        function click(obj) 
+        { 
+        if(obj.disabled) 
+        { 
+        return false; 
+        } 
+        return ture; 
+        } 
+</script>
+
+<body>
+    <div id="main">
+        <div id="content">
+            <div class="panel">
+                <div class="inner post">
+                    <form id="create_topic_form" method="post" action="">
+                        <fieldset>
+                            <textarea rows="1" id="title" autofocus class='span9' name='title' style="height:30px" placeholder="标题字数 10 字以上">{{ content.title }}</textarea
+
+                            <div class='markdown_editor in_editor'>
+                              <div class='markdown_in_editor'>
+                                <textarea  data-provide="markdown" id="editor" data-iconlibrary="fa" class='editor' name='content' rows='20' placeholder='文章支持 Markdown 语法, 请注意标记代码'>{{ content.content }}</textarea>
+
+                                <div>
+                                        <div class="input-group" style="float:left;width:280px;margin-top: 10px;">
+                                                <div class="input-group-btn">
+                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="height:34px">板块选择
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            {% for nav in navs %}
+                                                            <a id={{ loop.index }} href="#" disabled="ture" onclick="javascript:document.getElementById('mytext').value=document.getElementById({{ loop.index }}).innerHTML">{{nav}}</a>
+                                                            {% endfor %}
+                                                        </li>
+                                                    </ul>
+                                                </div><!-- /btn-group -->
+                                            <input type="text" name='forum' class="form-control" style="width:160px" id="mytext" value={{ content.forum }}>
+                                        </div>
+
+
+
+                                        <div class='editor_buttons' style="float:left;width:200px">
+                                                <input name="post" style="width:70%" type="submit" class='span-primary submit_btn' data-loading-text="提交中" value="提交" onclick="window.parent.location.href='../../forum/{{ content.title }}';opener.location.reload()">
+                                                <input name="post" style="float:right;background-color:rgb(170, 0, 0)"type="submit" style="float:right" class='span-primary submit_btn' data-loading-text="删除中" value="删除" onclick="return del_vali()">
+                                        </div>
+
+                                        <script>
+                                            function del_vali(){       
+                                                if (confirm('删除后的文章无法恢复，确定删除吗?')){
+                                                    window.parent.location.href='../../forum/{{ content.title }}';
+                                                    return true;
+                                                }
+
+                                            return false;
+                                        }
+                                        /*
+                                            $(document).ready(function(){
+                                              $("button[data-handler='bootstrap-markdown-cmdImage']").click(function(){
+                                                confirm('替换成插入图片！todo');
+                                                return false;
+                                              });
+                                            });
+
+                                            
+                                        </script>
+                                
+
+                              </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    (function ($) {
+      $.fn.markdown.messages.zh = {
+        'Bold': "粗体",
+        'Italic': "斜体",
+        'Heading': "标题",
+        'URL/Link': "链接",
+        'Image': "图片",
+        'List': "列表",
+        'Unordered List': "无序列表",
+        'Ordered List': "有序列表",
+        'Code': "代码",
+        'Quote': "引用",
+        'Preview': "预览",
+        'strong text': "粗体",
+        'emphasized text': "强调",
+        'heading text': "标题",
+        'enter link description here': "输入链接说明",
+        'Insert Hyperlink': "URL地址",
+        'enter image description here': "输入图片说明",
+        'Insert Image Hyperlink': "图片URL地址",
+        'enter image title here': "在这里输入图片标题",
+        'list text here': "这里是列表文本",
+        'code text here': "这里输入代码",
+        'quote here': "这里输入引用文本"
+      };
+    }(jQuery));
+    //初始化编辑器
+    $("#editor").markdown({
+        autofocus: true,
+        language: 'zh',
+    })
+</script>
+
+</body>
+</html>

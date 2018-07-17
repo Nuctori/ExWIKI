@@ -1,0 +1,84 @@
+
+<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+
+<div id="menu" class="nav visible-xs visible-sm">
+        <ul>
+            <img src="{{ url_for('static',filename='img/Shinki.png') }}" alt="" style="width: 220px;filter:alpha(opacity=50); ">
+            {% if index!=1 %}
+            <li><a href="#" onclick="javascript:history.back(-1)" >返回上一页</a></li>
+            {% endif %}
+            {% for nav in navs %}
+            <li><a href="{{ url_for('forum',forum=nav) }}">{{nav}}</a></li>
+            {% endfor %}      
+        </ul>
+    </div>
+<body class='body'>
+
+       <style>
+            
+            .body{
+                    height: auto;
+                    background: url({{ url_for('static',filename='img/12.jpg') }}) no-repeat center fixed;
+                    background-size:cover;
+                    position: relative;
+                    display:block;
+                    margin: 0 auto;
+            }
+
+
+        </style>
+        
+        <div class="main" style="width:70%;height: 100%;top: 0px;left: 110px;
+        position: relative;margin: 0 auto;">
+
+        
+        <div class="title" style="height: 60px;background-color:rgba(29, 0, 0, 0.75);filter: Alpha(Opacity=30)">
+             <h1 style="color: #ffffff;text-align: center;line-height:60px">
+                 {% if content %}
+                {{ content.title }}
+                {% endif %}
+
+
+             </h1>
+
+
+
+        </div>
+
+
+        <div class="content" style="background-color:rgba(246, 246, 255, 0.8);filter: Alpha(Opacity=30);width:100%;top: 0px;left: 110px;">
+
+
+                {% if route=='editor_forum' %}
+                <iframe src="{{ url_for('editor',forum=content.title) }}" width="100%" height="100%" frameborder="0">
+                    您的浏览器不支持iframe，请升级
+                </iframe>
+                {% else %}        
+                <div style="height: 40px;line-height:40px">
+                        <p style="color: #444444;;border-bottom: rgb(0, 0, 0) solid 1px;text-align: center">作者名字&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2018年6月24日22点41分 </p>
+        
+                </div>
+
+            
+                {% endif %}
+
+            
+
+                {% if route=='forum' %}
+                {{ markdown.markdown(content.content)|safe }}
+                {% endif %}
+
+
+
+
+                
+
+        </div>
+        <!--pc导航栏-->
+
+
+    </div>
+</body>
